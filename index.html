@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aditya Sharma — Android Developer and ML Enthusiast portfolio with featured projects, skills, resume, and contact links." />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Aditya Sharma | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --bg: #07111f;
+      --bg2: #0f172a;
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #e5eefc;
+      --muted: #b8c4da;
+      --accent: #60a5fa;
+      --accent2: #22c55e;
+      --shadow: 0 24px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(96,165,250,0.18), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(34,197,94,0.12), transparent 24%),
+        linear-gradient(135deg, #020617 0%, #0f172a 45%, #020617 100%);
+      overflow-x: hidden;
+    }
+
+    ::selection { background: rgba(96,165,250,0.35); color: white; }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 28%, transparent 82%);
+      z-index: -3;
+      pointer-events: none;
+    }
+
+    .glow-a, .glow-b {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(110px);
+      z-index: -2;
+      pointer-events: none;
+      animation: drift 10s ease-in-out infinite alternate;
+    }
+    .glow-a {
+      width: 460px;
+      height: 460px;
+      background: rgba(59,130,246,0.16);
+      top: -180px;
+      left: -160px;
+    }
+    .glow-b {
+      width: 380px;
+      height: 380px;
+      background: rgba(34,197,94,0.12);
+      bottom: -150px;
+      right: -120px;
+      animation-delay: 2s;
+    }
+
+    .scroll-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      z-index: 1000;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 20px rgba(96,165,250,0.8);
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(2,6,23,0.56);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(96,165,250,0.95), rgba(34,197,94,0.95));
+      box-shadow: 0 12px 30px rgba(59,130,246,0.25);
+      color: white;
+      flex: none;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.06);
+      color: white;
+    }
+
+    .hero {
+      padding: 72px 0 28px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+      min-height: calc(100vh - 115px);
+    }
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d7e7ff;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      max-width: 12ch;
+      background: linear-gradient(90deg, #dbeafe 0%, #60a5fa 45%, #22c55e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeDown 0.9s ease both;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.8;
+      max-width: 66ch;
+    }
+    .typing {
+      margin: 10px 0 20px;
+      color: #d1fae5;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 20px rgba(34,197,94,0.25);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 14px 20px;
+      transition: 0.25s ease;
+      will-change: transform;
+    }
+    .btn-primary {
+      color: white;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 18px 40px rgba(59,130,246,0.25);
+    }
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .btn:hover { transform: translateY(-3px); }
+
+    .hero-card {
+      position: relative;
+      padding: 26px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, rgba(96,165,250,0.32), rgba(34,197,94,0.16), transparent 65%);
+      opacity: 0.55;
+      filter: blur(24px);
+      z-index: 0;
+    }
+    .hero-card-inner { position: relative; z-index: 1; }
+    .avatar-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 3.8rem;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+      background: linear-gradient(135deg, rgba(96,165,250,0.35), rgba(34,197,94,0.35));
+      border: 3px solid rgba(255,255,255,0.18);
+      box-shadow: 0 0 0 10px rgba(255,255,255,0.03), 0 0 40px rgba(96,165,250,0.32);
+      animation: pulse 3s ease-in-out infinite;
+      user-select: none;
+    }
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .meta-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .meta-box span {
+      display: block;
+      font-size: 0.84rem;
+      color: #9fb0cb;
+      margin-bottom: 6px;
+    }
+    .meta-box strong {
+      font-size: 1rem;
+      color: white;
+    }
+
+    .section {
+      padding: 18px 0 0;
+    }
+    .card {
+      opacity: 0;
+      transform: translateY(38px);
+      transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin: 22px 0;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.22);
+    }
+    .card.visible { opacity: 1; transform: translateY(0); }
+    .card:hover {
+      border-color: rgba(96,165,250,0.25);
+      box-shadow: 0 18px 48px rgba(59,130,246,0.16);
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .section-head h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -0.03em;
+    }
+    .section-head p {
+      color: var(--muted);
+      max-width: 60ch;
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .stat {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      transition: transform 0.25s ease;
+    }
+    .stat:hover { transform: translateY(-4px); }
+    .stat h3 {
+      font-size: 1.8rem;
+      color: #8bc4ff;
+      margin-bottom: 6px;
+    }
+    .stat p { color: var(--muted); font-size: 0.95rem; }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .skill {
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 132px;
+    }
+    .skill i {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: inline-block;
+      color: #7cc4ff;
+    }
+    .skill h3 { margin-bottom: 8px; font-size: 1.05rem; }
+    .skill p { color: var(--muted); line-height: 1.65; font-size: 0.95rem; }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .project {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(96,165,250,0.26);
+    }
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .project h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+    .project small {
+      color: #9fb0cb;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dce8f8;
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+    .project p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 10px;
+    }
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.22s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .link-btn:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(90deg, rgba(96,165,250,0.28), rgba(34,197,94,0.22));
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+    .timeline-item {
+      padding: 18px 18px 18px 20px;
+      border-left: 3px solid rgba(96,165,250,0.65);
+      background: rgba(255,255,255,0.04);
+      border-radius: 16px;
+    }
+    .timeline-item h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+    .timeline-item p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+    }
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .contact-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .contact-item i {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.06);
+      color: #9cd1ff;
+      flex: none;
+    }
+    .contact-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+    .contact-item a, .contact-item span {
+      color: var(--muted);
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    footer {
+      padding: 26px 0 36px;
+      color: #8fa0bc;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-24px); filter: blur(4px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255,255,255,0.03), 0 0 36px rgba(96,165,250,0.28); }
+      50% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(255,255,255,0.03), 0 0 48px rgba(34,197,94,0.28); }
+    }
+    @keyframes drift {
+      from { transform: translate3d(0,0,0); }
+      to { transform: translate3d(120px, -40px, 0); }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .contact-grid,
+      .project-grid,
+      .skills,
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-grid {
+        min-height: auto;
+        padding-bottom: 24px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner,
+      .section-head,
+      .project-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero { padding-top: 38px; }
+      .hero-grid,
+      .contact-grid,
+      .project-grid,
+      .skills,
+      .stats,
+      .hero-meta {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        gap: 8px;
+      }
+      .nav-links a {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+      }
+      .hero p { font-size: 1rem; }
+      .avatar { width: 150px; height: 150px; font-size: 3rem; }
+      .card { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-bar" id="scrollBar"></div>
+  <div class="grid-bg"></div>
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <div class="brand-mark">A</div>
+        <span>Aditya Sharma</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home" class="hero container">
+    <div class="hero-grid">
+      <section>
+        <div class="eyebrow">
+          <i class="fa-solid fa-sparkles"></i>
+          Android Developer • ML Enthusiast • B.Tech CSE (AI)
+        </div>
+
+        <h1>Building useful products with code.</h1>
+        <p class="typing">
+          Kotlin, Jetpack Compose, FastAPI, Python, and machine learning — focused on practical apps, real-time systems, and clean architecture.
+        </p>
+        <p>
+          I build Android apps and machine learning systems that solve real problems. My work includes real-time bus tracking, e-commerce apps, AI-assisted visit logging, and classification/regression projects with FastAPI-backed deployment.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-arrow-right"></i> View Projects</a>
+          <a class="btn btn-secondary" href="https://github.com/adityasharma455" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a class="btn btn-secondary" href="mailto:adityasharma8474@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <h3>6+</h3>
+            <p>Featured Projects</p>
+          </div>
+          <div class="stat">
+            <h3>2</h3>
+            <p>Domains: Android + ML</p>
+          </div>
+          <div class="stat">
+            <h3>Clean</h3>
+            <p>MVVM / Architecture</p>
+          </div>
+          <div class="stat">
+            <h3>Real</h3>
+            <p>Production-style Apps</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="hero-card">
+        <div class="hero-card-inner">
+          <div class="avatar-wrap">
+            <div class="avatar">AS</div>
+          </div>
+          <h2 style="text-align:center; margin-bottom: 8px;">Aditya Sharma</h2>
+          <p style="text-align:center; color: var(--muted); line-height: 1.7;">
+            Android Developer | Kotlin, Jetpack Compose | ML Enthusiast (Python, Time Series, ML Models) | B.Tech CSE (AI)
+          </p>
+
+          <div class="hero-meta">
+            <div class="meta-box">
+              <span>Location</span>
+              <strong>Meerut, India</strong>
+            </div>
+            <div class="meta-box">
+              <span>Status</span>
+              <strong>Open for internships</strong>
+            </div>
+            <div class="meta-box">
+              <span>Primary Stack</span>
+              <strong>Kotlin + Jetpack Compose</strong>
+            </div>
+            <div class="meta-box">
+              <span>Secondary Stack</span>
+              <strong>Python + FastAPI</strong>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <section id="about" class="container section">
+    <div class="card">
+      <div class="section-head">
+        <div>
+          <h2>About Me</h2>
+          <p>A quick snapshot of your background, goals, and the kind of projects you build.</p>
+        </div>
+      </div>
+      <p>
+        I am a B.Tech CSE (AI) student with a strong interest in Android development and machine learning.
+        My public GitHub profile describes me as an Android Developer focused on Kotlin and Jetpack Compose, and also an ML enthusiast working with Python and ML models.
+      </p>
+      <p style="margin-top: 14px;">
+        My resume shows hands-on work in regression and classification, plus projects like Breast Cancer Prediction, Customer Churn Prediction, and Housing Price Prediction. I also build Android apps with MVVM, Clean Architecture, Firebase, Koin, and real-time data handling.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills" class="container section">
+    <div class="card">
+      <div class="section-head">
+        <div>
+          <h2>Skills</h2>
+          <p>Keep this focused on what you actually use in your projects and interviews.</p>
+        </div>
+      </div>
+
+      <div class="skills">
+        <div class="skill">
+          <i class="fa-brands fa-android"></i>
+          <h3>Android Development</h3>
+          <p>Kotlin, Jetpack Compose, MVVM, Clean Architecture, Coroutines, StateFlow, Koin, Navigation.</p>
+        </div>
+        <div class="skill">
+          <i class="fa-solid fa-brain"></i>
+          <h3>Machine Learning</h3>
+          <p>Python, Pandas, NumPy, Scikit-learn, model training, evaluation, preprocessing, and deployment.</p>
+        </div>
+        <div class="skill">
+          <i class="fa-solid fa-server"></i>
+          <h3>Backend & APIs</h3>
+          <p>FastAPI, REST APIs, request/response handling, schema validation, and local model serving.</p>
+        </div>
+        <div class="skill">
+          <i class="fa-solid fa-code"></i>
+          <h3>Tools & Workflow</h3>
+          <p>Git, GitHub, Android Studio, Linux, Firebase, Supabase, and clean project organization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="container section">
+    <div class="card">
+      <div class="section-head">
+        <div>
+          <h2>Featured Projects</h2>
+          <p>These projects are selected from your resume and GitHub profile to show both mobile and ML strength.</p>
+        </div>
+      </div>
+
+      <div class="project-grid">
+        <article class="project">
+          <div class="project-top">
+            <div>
+              <h3>AI Sales Visit Logger</h3>
+              <small>Offline-first Android app</small>
+            </div>
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+          <div class="badge-row">
+            <span class="pill">Kotlin</span>
+            <span class="pill">Room</span>
+            <span class="pill">WorkManager</span>
+            <span class="pill">Gemini API</span>
+            <span class="pill">Sarvam AI</span>
+          </div>
+          <p>
+            Offline-first sales logging app that captures visit notes, records audio, converts speech to text, generates AI summaries, and syncs when internet becomes available.
+          </p>
+          <div class="project-links">
+            <a class="link-btn" href="https://github.com/adityasharma455/ai-sales-visit-logger" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div>
+              <h3>Customer Churn Prediction System</h3>
+              <small>FastAPI + ML + Streamlit</small>
+            </div>
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div class="badge-row">
+            <span class="pill">Python</span>
+            <span class="pill">FastAPI</span>
+            <span class="pill">Scikit-learn</span>
+            <span class="pill">Streamlit</span>
+            <span class="pill">Deployment</span>
+          </div>
+          <p>
+            End-to-end churn prediction pipeline that predicts whether a telecom customer is likely to churn using customer attributes, service usage, and billing data.
+          </p>
+          <div class="project-links">
+            <a class="link-btn" href="https://github.com/adityasharma455/customer-churn-prediction-system" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div>
+              <h3>College Driver App</h3>
+              <small>Live GPS publishing app</small>
+            </div>
+            <i class="fa-solid fa-bus"></i>
+          </div>
+          <div class="badge-row">
+            <span class="pill">Jetpack Compose</span>
+            <span class="pill">Firebase</span>
+            <span class="pill">Foreground Service</span>
+            <span class="pill">GPS</span>
+          </div>
+          <p>
+            Driver-side tracking app that continuously shares live GPS coordinates through a foreground service so students can track the bus in real time.
+          </p>
+          <div class="project-links">
+            <a class="link-btn" href="https://github.com/adityasharma455/College_Driver_App" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div>
+              <h3>College Student App</h3>
+              <small>Live bus tracking companion app</small>
+            </div>
+            <i class="fa-solid fa-map-location-dot"></i>
+          </div>
+          <div class="badge-row">
+            <span class="pill">Jetpack Compose</span>
+            <span class="pill">OpenStreetMap</span>
+            <span class="pill">Firebase</span>
+            <span class="pill">Reactive UI</span>
+          </div>
+          <p>
+            Student-facing map app that listens to live GPS data from Firebase and shows the bus moving in real time on an interactive map.
+          </p>
+          <div class="project-links">
+            <a class="link-btn" href="https://github.com/adityasharma455/College_Student_App" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div>
+              <h3>Shopping Customer App</h3>
+              <small>Full e-commerce experience</small>
+            </div>
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <div class="badge-row">
+            <span class="pill">Jetpack Compose</span>
+            <span class="pill">Koin</span>
+            <span class="pill">Firebase</span>
+            <span class="pill">Wishlist</span>
+          </div>
+          <p>
+            Real-time Android e-commerce app with product browsing, cart, wishlist, orders, and cancellation features built with clean MVVM architecture.
+          </p>
+          <div class="project-links">
+            <a class="link-btn" href="https://github.com/adityasharma455/shopping-customer-app" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <div>
+              <h3>Machine Learning Projects</h3>
+              <small>Breast cancer, churn, housing</small>
+            </div>
+            <i class="fa-solid fa-diagram-project"></i>
+          </div>
+          <div class="badge-row">
+            <span class="pill">Random Forest</span>
+            <span class="pill">Regression</span>
+            <span class="pill">Classification</span>
+            <span class="pill">Data Analysis</span>
+          </div>
+          <p>
+            A collection of ML projects featuring Breast Cancer Prediction, Customer Churn Prediction, and Housing Price Prediction with preprocessing and model evaluation.
+          </p>
+          <div class="project-links">
+            <a class="link-btn" href="https://github.com/adityasharma455/Machine-Learning-Projects" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="container section">
+    <div class="card">
+      <div class="section-head">
+        <div>
+          <h2>Resume Highlights</h2>
+          <p>These are the key points your portfolio should communicate immediately.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>Career Objective</h3>
+          <p>Motivated B.Tech AI student with strong fundamentals in Python, machine learning, and data analysis. Interested in building practical AI/ML and Android solutions.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Technical Focus</h3>
+          <p>Android development with Kotlin and Jetpack Compose, plus ML engineering using Python, Scikit-learn, Pandas, NumPy, and FastAPI.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Education</h3>
+          <p>Meerut Institute of Engineering and Technology, B.Tech Specialization in AI, CGPA 7.33, 2025 – Present.</p>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top: 22px;">
+        <a class="btn btn-primary" href="RESUME_AYAAN.pdf" download><i class="fa-solid fa-download"></i> Download Resume</a>
+        <a class="btn btn-secondary" href="https://github.com/adityasharma455" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container section">
+    <div class="card">
+      <div class="section-head">
+        <div>
+          <h2>Contact</h2>
+          <p>Simple and clean contact section for recruiters and collaborators.</p>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <p style="color: var(--muted); line-height: 1.8;">
+            I am open to internship opportunities in Android development, backend/API development, and machine learning.
+            Feel free to reach out for internships, freelance work, or project collaboration.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:adityasharma8474@gmail.com"><i class="fa-solid fa-paper-plane"></i> Email Me</a>
+            <a class="btn btn-secondary" href="https://wa.me/918171547132" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="contact-list">
+          <div class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:adityasharma8474@gmail.com">adityasharma8474@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-brands fa-github"></i>
+            <div>
+              <strong>GitHub</strong>
+              <a href="https://github.com/adityasharma455" target="_blank" rel="noopener noreferrer">github.com/adityasharma455</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <div>
+              <strong>LinkedIn</strong>
+              <a href="https://linkedin.com/in/mohd-ayaan-57481030a" target="_blank" rel="noopener noreferrer">linkedin.com/in/mohd-ayaan-57481030a</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Aditya Sharma · Built with HTML, CSS, and JavaScript
+  </footer>
+
+  <script>
+    const scrollBar = document.getElementById("scrollBar");
+    window.addEventListener("scroll", () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      scrollBar.style.width = progress + "%";
+    });
+
+    const cards = document.querySelectorAll(".card");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.15 });
+
+    cards.forEach((card) => observer.observe(card));
+  </script>
+</body>
+</html>

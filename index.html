@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aditya Sharma — Android Developer and ML Enthusiast portfolio with featured projects, skills, resume, and contact links." />
+  <meta name="description" content="Aditya Sharma — Android Developer, AI & ML Enthusiast skilled in Kotlin, Jetpack Compose, Firebase, FastAPI, and practical AI applications." />
   <meta name="theme-color" content="#0f172a" />
   <title>Aditya Sharma | Portfolio</title>
 
@@ -14,21 +14,17 @@
 
   <style>
     :root {
-      --bg: #07111f;
+      --bg: #020617;
       --bg2: #0f172a;
-      --card: rgba(255, 255, 255, 0.03);
-      --card-hover: rgba(255, 255, 255, 0.07);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-border-hover: rgba(96, 165, 250, 0.3);
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.10);
       --text: #e5eefc;
-      --muted: #b8c4da;
+      --muted: #b7c3d9;
       --accent: #60a5fa;
       --accent2: #22c55e;
-      --shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-      --radius: 24px;
+      --shadow: 0 24px 60px rgba(0,0,0,0.34);
+      --radius: 26px;
       --max: 1180px;
-      /* Ultra-smooth custom cubic bezier curve */
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,52 +33,48 @@
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 20%, rgba(96,165,250,0.15), transparent 35%),
-        radial-gradient(circle at 85% 80%, rgba(34,197,94,0.1), transparent 35%),
-        linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
+        radial-gradient(circle at 15% 20%, rgba(96,165,250,0.16), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(34,197,94,0.12), transparent 24%),
+        linear-gradient(135deg, #020617 0%, #0f172a 45%, #020617 100%);
       overflow-x: hidden;
     }
 
-    ::selection { background: rgba(96, 165, 250, 0.3); color: white; }
+    ::selection { background: rgba(96,165,250,0.35); color: white; }
 
     .grid-bg {
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 44px 44px;
-      mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+      mask-image: radial-gradient(circle at center, black 28%, transparent 82%);
       z-index: -3;
       pointer-events: none;
     }
 
-    /* Isolated onto the GPU layer to solve the stuttering blur issue */
     .glow-a, .glow-b {
       position: fixed;
       border-radius: 50%;
-      filter: blur(120px);
+      filter: blur(110px);
       z-index: -2;
       pointer-events: none;
-      will-change: transform;
-      backface-visibility: hidden;
-      transform: translate3d(0,0,0);
-      animation: drift 14s ease-in-out infinite alternate;
+      animation: drift 10s ease-in-out infinite alternate;
     }
     .glow-a {
-      width: 450px;
-      height: 450px;
-      background: rgba(59, 130, 246, 0.14);
-      top: -150px;
-      left: -150px;
+      width: 460px;
+      height: 460px;
+      background: rgba(59,130,246,0.16);
+      top: -180px;
+      left: -160px;
     }
     .glow-b {
-      width: 400px;
-      height: 400px;
-      background: rgba(34, 197, 94, 0.1);
+      width: 380px;
+      height: 380px;
+      background: rgba(34,197,94,0.12);
       bottom: -150px;
-      right: -100px;
-      animation-delay: -3s;
+      right: -120px;
+      animation-delay: 2s;
     }
 
     .scroll-bar {
@@ -93,8 +85,19 @@
       width: 0%;
       z-index: 1000;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 15px rgba(96, 165, 250, 0.6);
-      will-change: width;
+      box-shadow: 0 0 18px rgba(96,165,250,0.7);
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(96,165,250,0.16), transparent 70%);
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      opacity: 0.9;
     }
 
     .container {
@@ -107,9 +110,8 @@
       top: 0;
       z-index: 100;
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(2, 6, 23, 0.65);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(2,6,23,0.60);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .nav-inner {
       display: flex;
@@ -126,22 +128,23 @@
       color: var(--text);
       font-weight: 800;
       letter-spacing: 0.02em;
+      min-width: 0;
     }
     .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, #3b82f6, #22c55e);
-      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+      background: linear-gradient(135deg, rgba(96,165,250,0.95), rgba(34,197,94,0.95));
+      box-shadow: 0 12px 30px rgba(59,130,246,0.25);
       color: white;
       flex: none;
     }
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 14px;
       align-items: center;
       justify-content: flex-end;
     }
@@ -150,68 +153,149 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
-      padding: 8px 16px;
+      padding: 10px 12px;
       border-radius: 999px;
-      transition: background 0.25s var(--ease-out-expo), color 0.25s var(--ease-out-expo);
+      transition: 0.25s ease;
     }
     .nav-links a:hover {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
       color: white;
     }
 
     .hero {
-      padding: 60px 0 30px;
+      padding: 34px 0 20px;
     }
-    .hero-grid {
+
+    .hero-shell {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 40px;
-      align-items: center;
-      min-height: calc(100vh - 120px);
+      grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.14fr);
+      gap: 22px;
+      align-items: stretch;
+      min-height: calc(100vh - 112px);
     }
+
+    .hero-card {
+      position: relative;
+      padding: 26px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, rgba(96,165,250,0.30), rgba(34,197,94,0.16), transparent 65%);
+      opacity: 0.6;
+      filter: blur(24px);
+      z-index: 0;
+    }
+    .hero-card-inner { position: relative; z-index: 1; }
+
+    .avatar-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 3.8rem;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+      background: linear-gradient(135deg, rgba(96,165,250,0.35), rgba(34,197,94,0.35));
+      border: 3px solid rgba(255,255,255,0.18);
+      box-shadow: 0 0 0 10px rgba(255,255,255,0.03), 0 0 40px rgba(96,165,250,0.32);
+      animation: pulse 3s ease-in-out infinite;
+      user-select: none;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .meta-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .meta-box span {
+      display: block;
+      font-size: 0.84rem;
+      color: #9fb0cb;
+      margin-bottom: 6px;
+    }
+    .meta-box strong {
+      font-size: 1rem;
+      color: white;
+      word-break: break-word;
+    }
+
+    .hero-content {
+      min-width: 0;
+      padding: 6px 0 0;
+    }
+
     .eyebrow {
       display: inline-flex;
       gap: 10px;
       align-items: center;
-      padding: 8px 16px;
+      padding: 10px 16px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
       color: #d7e7ff;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 600;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+      max-width: 100%;
     }
+
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.8rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #ffffff 0%, #60a5fa 50%, #22c55e 100%);
+      font-size: clamp(2.5rem, 6vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 16px;
+      max-width: 12ch;
+      background: linear-gradient(90deg, #dbeafe 0%, #60a5fa 45%, #22c55e 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: fadeDown 0.8s var(--ease-out-expo) both;
+      animation: fadeDown 0.9s ease both;
     }
-    .hero p {
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.75;
-    }
+
     .typing {
-      margin: 12px 0 24px;
+      margin: 10px 0 18px;
       color: #d1fae5;
-      font-weight: 500;
-      line-height: 1.6;
-      border-left: 2px solid var(--accent2);
-      padding-left: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 20px rgba(34,197,94,0.25);
+      font-size: 1.03rem;
+      line-height: 1.75;
+      max-width: 68ch;
+    }
+
+    .hero-content > p:not(.typing) {
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.8;
+      max-width: 70ch;
     }
 
     .cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 32px;
+      margin-top: 26px;
     }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -219,413 +303,361 @@
       text-decoration: none;
       border: 0;
       cursor: pointer;
-      font-weight: 600;
-      font-size: 0.95rem;
+      font-weight: 700;
       border-radius: 999px;
-      padding: 14px 24px;
-      transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo), background 0.3s var(--ease-out-expo);
+      padding: 14px 20px;
+      transition: 0.25s ease;
       will-change: transform;
+      white-space: nowrap;
     }
     .btn-primary {
       color: white;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
-      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
-    }
-    .btn-primary:hover {
-      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.35);
+      box-shadow: 0 18px 40px rgba(59,130,246,0.22);
     }
     .btn-secondary {
       color: var(--text);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    .btn:hover { 
-      transform: translateY(-3px); 
-    }
-    .btn:active {
-      transform: translateY(-1px);
-    }
+    .btn:hover { transform: translateY(-3px); }
 
-    .hero-card {
-      position: relative;
-      padding: 32px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(34, 197, 94, 0.05), transparent 60%);
-      pointer-events: none;
-    }
-    .hero-card-inner { position: relative; z-index: 1; }
-    .avatar-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-    .avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
+    .stats {
       display: grid;
-      place-items: center;
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      background: linear-gradient(135deg, rgba(96,165,250,0.2), rgba(34,197,94,0.2));
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 40px rgba(96, 165, 250, 0.15);
-      animation: pulse 4s ease-in-out infinite;
-      user-select: none;
-    }
-    .hero-meta {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 22px;
+      width: 100%;
+      align-items: stretch;
     }
-    .meta-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 14px;
-      transition: background 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo);
+    .stat {
+      padding: 16px 10px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      min-width: 0;
     }
-    .meta-box:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.12);
+    .stat:hover {
+      transform: translateY(-4px);
+      border-color: rgba(96,165,250,0.24);
+      box-shadow: 0 10px 30px rgba(59,130,246,0.10);
     }
-    .meta-box span {
-      display: block;
-      font-size: 0.8rem;
-      color: #9fb0cb;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .stat h3 {
+      font-size: 1.45rem;
+      color: #8bc4ff;
+      margin-bottom: 6px;
+      line-height: 1.1;
+      word-break: break-word;
     }
-    .meta-box strong {
-      font-size: 0.95rem;
-      color: white;
-      font-weight: 600;
+    .stat p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.35;
     }
 
-    .section {
-      padding: 40px 0;
-    }
+    .section { padding: 18px 0 0; }
     .card {
       opacity: 0;
-      transform: translateY(30px) translateZ(0);
-      will-change: transform, opacity;
-      transition: 
-        opacity 1s var(--ease-out-expo), 
-        transform 1s var(--ease-out-expo), 
-        box-shadow 0.4s var(--ease-out-expo), 
-        border-color 0.4s var(--ease-out-expo);
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
+      transform: translateY(38px);
+      transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: var(--radius);
-      padding: 36px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      padding: 28px;
+      margin: 22px 0;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.22);
     }
-    .card.visible { opacity: 1; transform: translateY(0) translateZ(0); }
+    .card.visible { opacity: 1; transform: translateY(0); }
     .card:hover {
-      border-color: var(--card-border-hover);
-      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.1);
+      border-color: rgba(96,165,250,0.25);
+      box-shadow: 0 18px 48px rgba(59,130,246,0.14);
     }
+
     .section-head {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       gap: 16px;
-      margin-bottom: 32px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding-bottom: 16px;
+      margin-bottom: 18px;
     }
     .section-head h2 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
       letter-spacing: -0.03em;
-      background: linear-gradient(90deg, #fff, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
     .section-head p {
       color: var(--muted);
       max-width: 60ch;
-      line-height: 1.6;
-      font-size: 0.95rem;
+      line-height: 1.7;
     }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 32px;
-    }
-    .stat {
-      padding: 20px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      text-align: center;
-      transition: transform 0.4s var(--ease-out-expo), background 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
-    }
-    .stat:hover { 
-      transform: translateY(-5px); 
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(96, 165, 250, 0.2);
-    }
-    .stat h3 {
-      font-size: 2rem;
-      color: #8bc4ff;
-      margin-bottom: 4px;
-      font-weight: 800;
-    }
-    .stat p { color: var(--muted); font-size: 0.9rem; font-weight: 500; }
 
     .skills {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
     }
     .skill {
       border-radius: 20px;
-      padding: 24px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: transform 0.4s var(--ease-out-expo), background 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
-    }
-    .skill:hover {
-      transform: translateY(-4px);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(96, 165, 250, 0.2);
+      padding: 18px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 150px;
     }
     .skill i {
-      font-size: 2rem;
-      margin-bottom: 16px;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
       display: inline-block;
       color: #7cc4ff;
     }
-    .skill h3 { margin-bottom: 8px; font-size: 1.1rem; font-weight: 700; }
-    .skill p { color: var(--muted); line-height: 1.6; font-size: 0.92rem; }
+    .skill h3 { margin-bottom: 8px; font-size: 1.05rem; }
+    .skill p { color: var(--muted); line-height: 1.65; font-size: 0.95rem; }
 
     .project-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      gap: 18px;
     }
     .project {
-      padding: 28px;
+      padding: 22px;
       border-radius: 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: transform 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
     .project:hover {
-      transform: translateY(-6px);
-      border-color: var(--card-border-hover);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transform: translateY(-5px);
+      border-color: rgba(96,165,250,0.26);
     }
     .project-top {
       display: flex;
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
     .project h3 {
-      font-size: 1.25rem;
-      margin-bottom: 4px;
-      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
     }
-    .project small {
-      color: #9fb0cb;
-      font-size: 0.85rem;
-    }
-    .project-top i {
-      font-size: 1.5rem;
-      color: var(--accent);
-    }
+    .project small { color: #9fb0cb; }
     .badge-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0;
+      gap: 10px;
+      margin: 14px 0;
     }
     .pill {
       display: inline-flex;
       align-items: center;
-      padding: 5px 12px;
+      padding: 7px 11px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
       color: #dce8f8;
-      font-size: 0.8rem;
-      font-weight: 500;
+      font-size: 0.86rem;
       white-space: nowrap;
     }
     .project p {
       color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-top: 10px;
     }
     .project-links {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 16px;
     }
     .link-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 18px;
+      padding: 10px 14px;
       border-radius: 999px;
       text-decoration: none;
       color: white;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: transform 0.3s var(--ease-out-expo), background 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.22s ease;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
     .link-btn:hover {
       transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: linear-gradient(90deg, rgba(96,165,250,0.28), rgba(34,197,94,0.22));
     }
 
     .timeline {
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
     .timeline-item {
-      padding: 20px;
-      border-left: 3px solid rgba(96, 165, 250, 0.5);
-      background: rgba(255, 255, 255, 0.01);
-      border-radius: 0 16px 16px 0;
-      transition: border-color 0.3s, background 0.3s;
-    }
-    .timeline-item:hover {
-      border-left-color: var(--accent);
-      background: rgba(255, 255, 255, 0.03);
+      padding: 18px 18px 18px 20px;
+      border-left: 3px solid rgba(96,165,250,0.65);
+      background: rgba(255,255,255,0.04);
+      border-radius: 16px;
     }
     .timeline-item h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       margin-bottom: 6px;
-      font-weight: 700;
     }
     .timeline-item p {
       color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.95rem;
+      line-height: 1.7;
     }
 
     .contact-grid {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 32px;
+      gap: 18px;
     }
     .contact-list {
       display: grid;
       gap: 12px;
+      margin-top: 10px;
     }
     .contact-item {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       align-items: center;
-      padding: 16px;
+      padding: 14px 16px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .contact-item:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(96, 165, 250, 0.15);
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
     }
     .contact-item i {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       border-radius: 12px;
       display: grid;
       place-items: center;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255,255,255,0.06);
       color: #9cd1ff;
-      font-size: 1.2rem;
       flex: none;
     }
     .contact-item strong {
       display: block;
       margin-bottom: 2px;
-      font-size: 0.9rem;
-      color: #9fb0cb;
     }
     .contact-item a, .contact-item span {
-      color: var(--text);
+      color: var(--muted);
       text-decoration: none;
       word-break: break-word;
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-    .contact-item a:hover {
-      text-decoration: underline;
-      color: var(--accent);
     }
 
     footer {
-      padding: 40px 0;
+      padding: 26px 0 36px;
       color: #8fa0bc;
       text-align: center;
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.95rem;
     }
 
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); filter: blur(4px); }
+      from { opacity: 0; transform: translateY(-24px); filter: blur(4px); }
       to { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
     @keyframes pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(96, 165, 250, 0.15); }
-      50% { transform: scale(1.02); box-shadow: 0 0 50px rgba(34, 197, 94, 0.15); }
+      0%,100% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255,255,255,0.03), 0 0 36px rgba(96,165,250,0.28); }
+      50% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(255,255,255,0.03), 0 0 48px rgba(34,197,94,0.28); }
     }
     @keyframes drift {
-      from { transform: translate3d(0, 0, 0); }
-      to { transform: translate3d(60px, -20px, 0); }
+      from { transform: translate3d(0,0,0); }
+      to { transform: translate3d(120px, -40px, 0); }
     }
 
-    @media (max-width: 980px) {
-      .hero-grid, .contact-grid, .project-grid, .skills, .stats {
+    @media (max-width: 1024px) {
+      .hero-shell {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .skills {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .project-grid,
+      .contact-grid {
         grid-template-columns: 1fr 1fr;
       }
-      .hero-grid { min-height: auto; padding-bottom: 40px; }
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    @media (max-width: 720px) {
-      .nav-inner, .section-head, .project-top {
+    @media (max-width: 820px) {
+      .project-grid,
+      .contact-grid,
+      .skills,
+      .hero-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 28px;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .avatar {
+        width: 150px;
+        height: 150px;
+        font-size: 3rem;
+      }
+
+      .card,
+      .hero-card {
+        padding: 22px;
+      }
+
+      .nav-inner,
+      .section-head,
+      .project-top {
         flex-direction: column;
         align-items: flex-start;
       }
-      .hero { padding-top: 24px; }
-      .hero-grid, .contact-grid, .project-grid, .skills, .stats, .hero-meta {
+    }
+
+    @media (max-width: 680px) {
+      .stats {
         grid-template-columns: 1fr;
       }
-      .nav-links { width: 100%; justify-content: flex-start; margin-top: 12px; }
-      .nav-links a { padding: 6px 12px; font-size: 0.9rem; }
-      .avatar { width: 130px; height: 130px; font-size: 2.8rem; }
-      .card { padding: 24px; }
+
+      .nav-links {
+        gap: 8px;
+      }
+
+      .nav-links a {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .cta-row {
+        flex-direction: column;
+      }
+
+      .hero-card {
+        padding: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
@@ -634,6 +666,7 @@
   <div class="grid-bg"></div>
   <div class="glow-a"></div>
   <div class="glow-b"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
 
   <nav class="nav">
     <div class="container nav-inner">
@@ -652,19 +685,52 @@
   </nav>
 
   <main id="home" class="hero container">
-    <div class="hero-grid">
-      <section>
+    <section class="hero-shell">
+      <aside class="hero-card">
+        <div class="hero-card-inner">
+          <div class="avatar-wrap">
+            <div class="avatar">AS</div>
+          </div>
+          <h2 style="text-align:center; margin-bottom: 8px;">Aditya Sharma</h2>
+          <p style="text-align:center; color: var(--muted); line-height: 1.7;">
+            Android Developer | Kotlin, Jetpack Compose | AI & ML Enthusiast | FastAPI Learner
+          </p>
+
+          <div class="hero-meta">
+            <div class="meta-box">
+              <span>Location</span>
+              <strong>Hapur, Uttar Pradesh</strong>
+            </div>
+            <div class="meta-box">
+              <span>Status</span>
+              <strong>Open for internships</strong>
+            </div>
+            <div class="meta-box">
+              <span>Primary Stack</span>
+              <strong>Kotlin + Jetpack Compose</strong>
+            </div>
+            <div class="meta-box">
+              <span>Secondary Stack</span>
+              <strong>Python + FastAPI</strong>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="hero-content">
         <div class="eyebrow">
           <i class="fa-solid fa-sparkles"></i>
-          Android Developer • ML Enthusiast • B.Tech CSE (AI)
+          Android Developer • AI & ML Enthusiast • FastAPI Learner • B.Tech CSE (AI)
         </div>
 
         <h1>Building useful products with code.</h1>
+
         <p class="typing">
-          Kotlin, Jetpack Compose, FastAPI, Python, and machine learning — focused on practical apps, real-time systems, and clean architecture.
+          Kotlin, Jetpack Compose, Firebase, FastAPI, Python, and AI-powered systems — focused on practical Android apps, automation, and scalable workflows.
         </p>
+
         <p>
-          I build Android apps and machine learning systems that solve real problems. My work includes real-time bus tracking, e-commerce apps, AI-assisted visit logging, and classification/regression projects with FastAPI-backed deployment.
+          I build Android applications and machine learning systems that solve real problems. My work includes offline-first AI visit logging, real-time bus tracking, customer churn prediction, and ML model deployment with FastAPI and Streamlit.
         </p>
 
         <div class="cta-row">
@@ -675,55 +741,24 @@
 
         <div class="stats">
           <div class="stat">
-            <h3>6+</h3>
-            <p>Featured Projects</p>
+            <h3>10+</h3>
+            <p>Projects Built</p>
           </div>
           <div class="stat">
-            <h3>2</h3>
-            <p>Domains: Android + ML</p>
+            <h3>AI + Android</h3>
+            <p>Core Focus</p>
           </div>
           <div class="stat">
             <h3>Clean</h3>
-            <p>MVVM / Architecture</p>
+            <p>Architecture Driven</p>
           </div>
           <div class="stat">
-            <h3>Real</h3>
-            <p>Production-style Apps</p>
+            <h3>Internship</h3>
+            <p>Ready to Contribute</p>
           </div>
         </div>
       </section>
-
-      <aside class="hero-card">
-        <div class="hero-card-inner">
-          <div class="avatar-wrap">
-            <div class="avatar">AS</div>
-          </div>
-          <h2 style="text-align:center; margin-bottom: 8px;">Aditya Sharma</h2>
-          <p style="text-align:center; color: var(--muted); line-height: 1.7; font-size: 0.95rem;">
-            Android Developer | Kotlin, Jetpack Compose | ML Enthusiast (Python, Time Series, ML Models) | B.Tech CSE (AI)
-          </p>
-
-          <div class="hero-meta">
-            <div class="meta-box">
-              <span>Location</span>
-              <strong>Meerut, India</strong>
-            </div>
-            <div class="meta-box">
-              <span>Status</span>
-              <strong>Open for internships</strong>
-            </div>
-            <div class="meta-box">
-              <span>Primary Stack</span>
-              <strong>Kotlin + Compose</strong>
-            </div>
-            <div class="meta-box">
-              <span>Secondary Stack</span>
-              <strong>Python + FastAPI</strong>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </div>
+    </section>
   </main>
 
   <section id="about" class="container section">
@@ -734,12 +769,14 @@
           <p>A quick snapshot of your background, goals, and the kind of projects you build.</p>
         </div>
       </div>
-      <p style="line-height: 1.75;">
-        I am a B.Tech CSE (AI) student with a strong interest in Android development and machine learning.
-        My public GitHub profile describes me as an Android Developer focused on Kotlin and Jetpack Compose, and also an ML enthusiast working with Python and ML models.
+      <p>
+        I am a B.Tech CSE (AI) student passionate about Android development, machine learning, and AI-powered applications. I enjoy building clean, scalable, and practical software products that combine modern UI development with intelligent backend systems.
       </p>
-      <p style="margin-top: 14px; line-height: 1.75;">
-        My resume shows hands-on work in regression and classification, plus projects like Breast Cancer Prediction, Customer Churn Prediction, and Housing Price Prediction. I also build Android apps with MVVM, Clean Architecture, Firebase, Koin, and real-time data handling.
+      <p style="margin-top: 14px;">
+        My technical experience includes Kotlin, Jetpack Compose, Firebase, FastAPI, Scikit-learn, Pandas, NumPy, and real-time Android systems. I have built projects involving AI-generated CRM summaries, customer churn prediction, live GPS tracking, and ML model deployment.
+      </p>
+      <p style="margin-top: 14px;">
+        I am currently focused on improving my skills in GenAI, API integration, NLP basics, Transformers, scalable architecture, and intelligent automation workflows.
       </p>
     </div>
   </section>
@@ -749,30 +786,40 @@
       <div class="section-head">
         <div>
           <h2>Skills</h2>
-          <p>Keep this focused on what you actually use in your projects and interviews.</p>
+          <p>Focused on the exact technologies and concepts mentioned in your resume.</p>
         </div>
       </div>
 
       <div class="skills">
         <div class="skill">
+          <i class="fa-solid fa-code"></i>
+          <h3>Programming Languages</h3>
+          <p>Kotlin, Python, Java, SQL, and C.</p>
+        </div>
+        <div class="skill">
           <i class="fa-brands fa-android"></i>
           <h3>Android Development</h3>
-          <p>Kotlin, Jetpack Compose, MVVM, Clean Architecture, Coroutines, StateFlow, Koin, Navigation.</p>
+          <p>Jetpack Compose, MVVM, Clean Architecture, Coroutines, StateFlow, Compose Navigation, Koin, Firebase, Retrofit, OpenStreetMap, Room, WorkManager, OkHttp, Coil.</p>
         </div>
         <div class="skill">
           <i class="fa-solid fa-brain"></i>
-          <h3>Machine Learning</h3>
-          <p>Python, Pandas, NumPy, Scikit-learn, model training, evaluation, preprocessing, and deployment.</p>
+          <h3>Machine Learning & AI</h3>
+          <p>Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn, model evaluation, classification, regression, deployment, NLP basics, Transformers basics, GenAI learning.</p>
         </div>
         <div class="skill">
           <i class="fa-solid fa-server"></i>
-          <h3>Backend & APIs</h3>
-          <p>FastAPI, REST APIs, request/response handling, schema validation, and local model serving.</p>
+          <h3>Backend & API</h3>
+          <p>Firebase, REST API, JSON, Pydantic, FastAPI integration, Joblib, API handling, request-response logic.</p>
         </div>
         <div class="skill">
-          <i class="fa-solid fa-code"></i>
-          <h3>Tools & Workflow</h3>
-          <p>Git, GitHub, Android Studio, Linux, Firebase, Supabase, and clean project organization.</p>
+          <i class="fa-solid fa-laptop-code"></i>
+          <h3>Developer Tools</h3>
+          <p>Android Studio, Git, GitHub, Linux, Streamlit, debugging, and clean project workflows.</p>
+        </div>
+        <div class="skill">
+          <i class="fa-solid fa-layer-group"></i>
+          <h3>Additional Skills</h3>
+          <p>Machine Learning, Deep Learning, OOP concepts, problem solving, and practical product building.</p>
         </div>
       </div>
     </div>
@@ -783,7 +830,7 @@
       <div class="section-head">
         <div>
           <h2>Featured Projects</h2>
-          <p>These projects are selected from your resume and GitHub profile to show both mobile and ML strength.</p>
+          <p>These projects reflect your Android, AI/ML, and backend work from the resume.</p>
         </div>
       </div>
 
@@ -798,16 +845,22 @@
           </div>
           <div class="badge-row">
             <span class="pill">Kotlin</span>
+            <span class="pill">Jetpack Compose</span>
+            <span class="pill">MVVM</span>
             <span class="pill">Room</span>
             <span class="pill">WorkManager</span>
+            <span class="pill">Firebase</span>
             <span class="pill">Gemini API</span>
             <span class="pill">Sarvam AI</span>
           </div>
           <p>
-            Offline-first sales logging app that captures visit notes, records audio, converts speech to text, generates AI summaries, and syncs when internet becomes available.
+            Built an offline-first sales visit logging app that converts raw notes into structured CRM-ready summaries using AI. Added audio recording, speech-to-text, and automatic background sync for a smooth field workflow.
+          </p>
+          <p>
+            Gemini generates meeting summary, pain points, action items, next steps, emotion, and deal probability.
           </p>
           <div class="project-links">
-            <a class="link-btn" href="https://github.com/adityasharma455/ai-sales-visit-logger" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="link-btn" href="https://github.com/adityasharma455/ai-sales-visit-logger" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Repository</a>
           </div>
         </article>
 
@@ -821,82 +874,51 @@
           </div>
           <div class="badge-row">
             <span class="pill">Python</span>
-            <span class="pill">FastAPI</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">NumPy</span>
             <span class="pill">Scikit-learn</span>
+            <span class="pill">FastAPI</span>
             <span class="pill">Streamlit</span>
-            <span class="pill">Deployment</span>
+            <span class="pill">Random Forest</span>
+            <span class="pill">Joblib</span>
           </div>
           <p>
-            End-to-end churn prediction pipeline that predicts whether a telecom customer is likely to churn using customer attributes, service usage, and billing data.
+            Built an end-to-end machine learning system to predict whether a telecom customer will churn or stay. Performed preprocessing, encoding, scaling, and model training with a Random Forest Classifier.
+          </p>
+          <p>
+            Deployed the model through a FastAPI backend and Streamlit frontend for real-time predictions.
           </p>
           <div class="project-links">
-            <a class="link-btn" href="https://github.com/adityasharma455/customer-churn-prediction-system" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="link-btn" href="https://github.com/adityasharma455/customer-churn-prediction-system" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Repository</a>
           </div>
         </article>
 
         <article class="project">
           <div class="project-top">
             <div>
-              <h3>College Driver App</h3>
-              <small>Live GPS publishing app</small>
+              <h3>College Bus Tracking App</h3>
+              <small>Driver + Student system</small>
             </div>
             <i class="fa-solid fa-bus"></i>
           </div>
           <div class="badge-row">
+            <span class="pill">Kotlin</span>
             <span class="pill">Jetpack Compose</span>
             <span class="pill">Firebase</span>
-            <span class="pill">Foreground Service</span>
-            <span class="pill">GPS</span>
-          </div>
-          <p>
-            Driver-side tracking app that continuously shares live GPS coordinates through a foreground service so students can track the bus in real time.
-          </p>
-          <div class="project-links">
-            <a class="link-btn" href="https://github.com/adityasharma455/College_Driver_App" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-top">
-            <div>
-              <h3>College Student App</h3>
-              <small>Live bus tracking companion app</small>
-            </div>
-            <i class="fa-solid fa-map-location-dot"></i>
-          </div>
-          <div class="badge-row">
-            <span class="pill">Jetpack Compose</span>
             <span class="pill">OpenStreetMap</span>
-            <span class="pill">Firebase</span>
-            <span class="pill">Reactive UI</span>
+            <span class="pill">Foreground Service</span>
+            <span class="pill">Coroutines</span>
+            <span class="pill">StateFlow</span>
           </div>
           <p>
-            Student-facing map app that listens to live GPS data from Firebase and shows the bus moving in real time on an interactive map.
+            Built a real-time bus tracking system where the driver app shares live GPS data and the student app renders movement on maps.
           </p>
-          <div class="project-links">
-            <a class="link-btn" href="https://github.com/adityasharma455/College_Student_App" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-top">
-            <div>
-              <h3>Shopping Customer App</h3>
-              <small>Full e-commerce experience</small>
-            </div>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="badge-row">
-            <span class="pill">Jetpack Compose</span>
-            <span class="pill">Koin</span>
-            <span class="pill">Firebase</span>
-            <span class="pill">Wishlist</span>
-          </div>
           <p>
-            Real-time Android e-commerce app with product browsing, cart, wishlist, orders, and cancellation features built with clean MVVM architecture.
+            Implemented continuous location sharing using Foreground Service and reactive UI updates with StateFlow.
           </p>
           <div class="project-links">
-            <a class="link-btn" href="https://github.com/adityasharma455/shopping-customer-app" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="link-btn" href="https://github.com/adityasharma455/College_Driver_App" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Driver App</a>
+            <a class="link-btn" href="https://github.com/adityasharma455/College_Student_App" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Student App</a>
           </div>
         </article>
 
@@ -904,21 +926,27 @@
           <div class="project-top">
             <div>
               <h3>Machine Learning Projects</h3>
-              <small>Breast cancer, churn, housing</small>
+              <small>Classification + regression experiments</small>
             </div>
             <i class="fa-solid fa-diagram-project"></i>
           </div>
           <div class="badge-row">
-            <span class="pill">Random Forest</span>
-            <span class="pill">Regression</span>
+            <span class="pill">Python</span>
+            <span class="pill">Scikit-learn</span>
+            <span class="pill">Matplotlib</span>
+            <span class="pill">Seaborn</span>
             <span class="pill">Classification</span>
-            <span class="pill">Data Analysis</span>
+            <span class="pill">Regression</span>
+            <span class="pill">Model Evaluation</span>
           </div>
           <p>
-            A collection of ML projects featuring Breast Cancer Prediction, Customer Churn Prediction, and Housing Price Prediction with preprocessing and model evaluation.
+            Built a Breast Cancer Prediction model using preprocessing, scaling, and Random Forest classification. Also developed a Housing Price Prediction pipeline using Linear Regression, Ridge Regression, and Lasso Regression.
+          </p>
+          <p>
+            Strengthened skills in data analysis, model comparison, and performance evaluation through multiple ML experiments.
           </p>
           <div class="project-links">
-            <a class="link-btn" href="https://github.com/adityasharma455/Machine-Learning-Projects" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="link-btn" href="https://github.com/adityasharma455/Machine-Learning-Projects" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Repository</a>
           </div>
         </article>
       </div>
@@ -930,26 +958,30 @@
       <div class="section-head">
         <div>
           <h2>Resume Highlights</h2>
-          <p>These are the key points your portfolio should communicate immediately.</p>
+          <p>Key points recruiters should notice in the first few seconds.</p>
         </div>
       </div>
 
       <div class="timeline">
         <div class="timeline-item">
           <h3>Career Objective</h3>
-          <p>Motivated B.Tech AI student with strong fundamentals in Python, machine learning, and data analysis. Interested in building practical AI/ML and Android solutions.</p>
+          <p>Motivated B.Tech CSE (AI) student with hands-on experience in Android development, machine learning, FastAPI, and AI-powered applications. Seeking an internship in AI-driven product development, automation, and intelligent application workflows.</p>
         </div>
         <div class="timeline-item">
           <h3>Technical Focus</h3>
-          <p>Android development with Kotlin and Jetpack Compose, plus ML engineering using Python, Scikit-learn, Pandas, NumPy, and FastAPI.</p>
+          <p>Android development with Kotlin and Jetpack Compose, plus AI/ML systems using Python, Scikit-learn, Pandas, NumPy, and FastAPI integration.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Current Learning</h3>
+          <p>GenAI workflows, NLP basics, Transformers basics, scalable APIs, and practical software engineering patterns.</p>
         </div>
         <div class="timeline-item">
           <h3>Education</h3>
-          <p>Meerut Institute of Engineering and Technology, B.Tech Specialization in AI, CGPA 7.33, 2025 – Present.</p>
+          <p>Meerut Institute of Engineering and Technology — B.Tech Specialization in AI (2025 – Present) | CGPA: 7.33</p>
         </div>
       </div>
 
-      <div class="cta-row" style="margin-top: 32px;">
+      <div class="cta-row" style="margin-top: 22px;">
         <a class="btn btn-primary" href="RESUME_AYAAN.pdf" download><i class="fa-solid fa-download"></i> Download Resume</a>
         <a class="btn btn-secondary" href="https://github.com/adityasharma455" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Profile</a>
       </div>
@@ -968,11 +1000,12 @@
       <div class="contact-grid">
         <div>
           <p style="color: var(--muted); line-height: 1.8;">
-            I am open to internship opportunities in Android development, backend/API development, and machine learning.
-            Feel free to reach out for internships, freelance work, or project collaboration.
+            I am actively looking for internship opportunities in Android development, AI/ML engineering, backend API development, and AI-powered product building.
+            Feel free to connect for internships, collaboration, freelance projects, or innovative AI application development.
           </p>
           <div class="cta-row">
             <a class="btn btn-primary" href="mailto:adityasharma8474@gmail.com"><i class="fa-solid fa-paper-plane"></i> Email Me</a>
+            <a class="btn btn-secondary" href="tel:+918171547132"><i class="fa-solid fa-phone"></i> Call Me</a>
             <a class="btn btn-secondary" href="https://wa.me/918171547132" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
           </div>
         </div>
@@ -986,6 +1019,13 @@
             </div>
           </div>
           <div class="contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong>Phone</strong>
+              <a href="tel:+918171547132">+91 8171547132</a>
+            </div>
+          </div>
+          <div class="contact-item">
             <i class="fa-brands fa-github"></i>
             <div>
               <strong>GitHub</strong>
@@ -996,7 +1036,14 @@
             <i class="fa-brands fa-linkedin"></i>
             <div>
               <strong>LinkedIn</strong>
-              <a href="https://linkedin.com/in/mohd-ayaan-57481030a" target="_blank" rel="noopener noreferrer">linkedin.com/in/mohd-ayaan-57481030a</a>
+              <span>Aditya Sharma</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Location</strong>
+              <span>Hapur, Uttar Pradesh</span>
             </div>
           </div>
         </div>
@@ -1005,43 +1052,36 @@
   </section>
 
   <footer>
-    © 2026 Aditya Sharma · Built with HTML, CSS, and JavaScript
+    © 2026 Aditya Sharma · Android Developer · AI & ML Enthusiast · Built with HTML, CSS, and JavaScript
   </footer>
 
   <script>
-    // Optimized Scroll Indicator using requestAnimationFrame
     const scrollBar = document.getElementById("scrollBar");
-    let ticking = false;
-
-    function updateProgressBar() {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    window.addEventListener("scroll", () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
       scrollBar.style.width = progress + "%";
-      ticking = false;
-    }
+    });
 
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateProgressBar);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // Intersection Observer for Cards with optimized entry thresholds
     const cards = document.querySelectorAll(".card");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
+        if (entry.isIntersecting) entry.target.classList.add("visible");
       });
-    }, { 
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px" // Triggers slightly before element comes into view
-    });
-
+    }, { threshold: 0.15 });
     cards.forEach((card) => observer.observe(card));
+
+    const glow = document.getElementById("cursorGlow");
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (isFinePointer) {
+      window.addEventListener("mousemove", (e) => {
+        glow.style.left = e.clientX + "px";
+        glow.style.top = e.clientY + "px";
+      });
+    } else {
+      glow.style.display = "none";
+    }
   </script>
 </body>
 </html>
